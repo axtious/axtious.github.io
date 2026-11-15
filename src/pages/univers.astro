@@ -5,7 +5,7 @@ import { categories } from '../config/site';
 
 <BaseLayout
   title="Mes univers"
-  description="My Dare, Omnivya, Sanad et ScaLion : les projets qui nourrissent le carnet de Taous Deneuve."
+  description="My Dare, Omnivya et Sanad : les projets qui nourrissent le carnet de Taous Deneuve."
 >
   <section class="page-section wrap">
     <header class="page-heading">
@@ -24,9 +24,20 @@ import { categories } from '../config/site';
             <h2>{category.name}</h2>
             <p>{category.description}</p>
           </div>
-          <a class="text-link" href={`/categories/${category.slug}/`}>
-            Les pages du carnet <span aria-hidden="true">↗</span>
-          </a>
+          <div class="universe-actions">
+            <a class="text-link" href={`/categories/${category.slug}/`}>
+              Les pages du carnet <span aria-hidden="true">↗</span>
+            </a>
+            {'url' in category && category.url && (
+              <a
+                class="text-link"
+                href={category.url}
+                rel="noopener noreferrer"
+              >
+                Site {category.name} <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </div>
         </section>
       ))}
     </div>

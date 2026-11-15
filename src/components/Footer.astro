@@ -1,6 +1,12 @@
 ---
 import Feather from './Feather.astro';
-import { site } from '../config/site';
+import { categories, relatedSites, site } from '../config/site';
+
+const projectLinks = categories.flatMap((category) =>
+  'url' in category && category.url
+    ? [{ name: category.name, url: category.url }]
+    : [],
+);
 ---
 
 <footer class="site-footer wrap">
@@ -13,9 +19,23 @@ import { site } from '../config/site';
   </div>
   <div class="footer-links">
     <a href="/blog/">Le carnet</a>
+    <a href="/univers/">Mes univers</a>
     <a href="/rss.xml">Flux RSS</a>
     <a href="/a-propos/">À propos</a>
+    <a href="/llms.txt">llms.txt</a>
   </div>
+  <nav class="footer-projects" aria-label="Projets et sites liés">
+    {projectLinks.map((project) => (
+      <a href={project.url} rel="noopener noreferrer">
+        {project.name}
+      </a>
+    ))}
+    {relatedSites.map((item) => (
+      <a href={item.url} rel="noopener noreferrer">
+        {item.name}
+      </a>
+    ))}
+  </nav>
   <p>
     © {new Date().getFullYear()} {site.name}
   </p>

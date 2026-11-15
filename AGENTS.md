@@ -4,7 +4,7 @@ Ce fichier s’applique à tout le dépôt. Lis-le avant de modifier le site, pu
 
 ## Le projet
 
-Blog personnel de **Taous Deneuve**, destiné à `https://taous.deneuve.xyz`. Il accueille ses réflexions sur l’entrepreneuriat et ses projets : **My Dare**, **Omnivya**, **Sanad** et **ScaLion**. C’est un carnet signé, avec un point de vue personnel ; les entreprises sont des sujets, pas des pages commerciales à remplir.
+Blog personnel de **Taous Deneuve**, destiné à `https://taous.deneuve.xyz`. Il accueille ses réflexions sur l’entrepreneuriat et ses projets : **My Dare**, **Omnivya** et **Sanad**. C’est un carnet signé, avec un point de vue personnel ; les entreprises sont des sujets, pas des pages commerciales à remplir.
 
 Le site est statique et hébergé sur GitHub Pages. Étienne s’occupe du DNS au moment du lancement. Les paramètres du domaine et les étapes de lancement sont décrits dans `docs/deploiement.md`.
 
@@ -44,7 +44,7 @@ Pour les collections Astro actuelles : utilise `src/content.config.ts`, `defineC
 - Le nom du fichier est l’identifiant de l’URL : `mon-sujet.md` devient `/blog/mon-sujet/`. Utilise des minuscules ASCII et des tirets ; pas de champ `slug` supplémentaire.
 - Garde `draft: true` pour un texte à relire. Une demande explicite de publication vaut validation ; sinon, n’affirme pas qu’un article est approuvé.
 - Respecte le schéma dans `src/content.config.ts`. La description est une phrase utile de 160 caractères maximum. Les dates sont des chaînes ISO entre guillemets, au format `YYYY-MM-DD`.
-- Catégories disponibles : `entreprendre`, `my-dare`, `omnivya`, `sanad`, `scalion`. Ne crée pas une variante orthographique pour une même catégorie.
+- Catégories disponibles : `entreprendre`, `my-dare`, `omnivya`, `sanad`. Ne crée pas une variante orthographique pour une même catégorie.
 - Une image `cover` est un chemin local `/images/...` et nécessite `coverAlt`. Vérifie que le fichier existe et que les droits d’utilisation conviennent.
 - Un titre principal est produit par la page : commence le corps Markdown avec des `##`, puis des `###` si nécessaire.
 - Réutilise la sélection d’articles partagée du projet. Les brouillons et articles datés dans le futur doivent rester absents de **toutes** les sorties de production : pages d’articles, listes, flux RSS et sitemap. Leur visibilité en développement ne doit pas modifier cette règle.
@@ -61,7 +61,7 @@ Ne prête pas à Taous des anecdotes, opinions ou citations qu’elle n’a pas 
 
 Pour une affirmation documentée, vérifie une source pertinente et ajoute le lien dans le texte. Préfère l’étude, l’organisme ou la documentation d’origine. Une référence ne doit pas servir d’ornement. Vérifie l’actualité des informations qui peuvent changer.
 
-Orthographes : **Taous Deneuve**, **My Dare**, **Omnivya**, **Sanad**, **ScaLion**. Ne fabrique pas les adresses des projets ou des réseaux sociaux ; utilise celles qui ont été confirmées.
+Orthographes : **Taous Deneuve**, **My Dare**, **Omnivya**, **Sanad**. Ne fabrique pas les adresses des projets ou des réseaux sociaux ; utilise celles qui ont été confirmées.
 
 ## Direction visuelle
 

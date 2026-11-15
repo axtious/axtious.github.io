@@ -22,6 +22,17 @@ const posts = (await getPosts()).filter(
       <p class="eyebrow">LES THÈMES DU CARNET</p>
       <h1>{category.name}</h1>
       <p>{category.description}</p>
+      {'url' in category && category.url && (
+        <p>
+          <a
+            class="text-link"
+            href={category.url}
+            rel="noopener noreferrer"
+          >
+            Site {category.name} <span aria-hidden="true">↗</span>
+          </a>
+        </p>
+      )}
     </header>
     <nav class="category-nav" aria-label="Thèmes du carnet">
       <a href="/blog/">Tout le carnet</a>

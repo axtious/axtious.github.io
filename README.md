@@ -1,6 +1,6 @@
 # Le carnet de Taous
 
-Le blog personnel de **Taous Deneuve** : entreprendre, construire des projets et partager ce que le terrain apprend. My Dare, Omnivya, Sanad et ScaLion y ont leur place, dans un univers inspiré des couleurs du paon.
+Le blog personnel de **Taous Deneuve** : entreprendre, construire des projets et partager ce que le terrain apprend. My Dare, Omnivya et Sanad y ont leur place, dans un univers inspiré des couleurs du paon.
 
 **Adresse prévue :** [taous.deneuve.xyz](https://taous.deneuve.xyz). Le domaine sera raccordé par Étienne au lancement ; sa présence dans la configuration ne signifie pas qu’il est déjà accessible.
 

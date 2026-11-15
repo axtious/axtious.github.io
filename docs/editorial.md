@@ -1,6 +1,6 @@
 # Rédiger et publier un article
 
-Le carnet porte la voix de Taous. Les projets donnent matière à raconter, expliquer ou questionner. Un article peut parler de My Dare, Omnivya, Sanad ou ScaLion sans devenir une page de vente.
+Le carnet porte la voix de Taous. Les projets donnent matière à raconter, expliquer ou questionner. Un article peut parler de My Dare, Omnivya ou Sanad sans devenir une page de vente.
 
 ## Créer un fichier
 
@@ -45,7 +45,6 @@ Les dates doivent rester entre guillemets. `src/content.config.ts` fait autorit�
 | `my-dare`                | Le projet My Dare                     |
 | `omnivya`                | Le projet Omnivya                     |
 | `sanad`                  | Le projet Sanad                       |
-| `scalion`                | Le projet ScaLion                     |
 
 ## Écrire le corps du texte
 

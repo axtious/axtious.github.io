@@ -1,6 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Feather from '../components/Feather.astro';
+import { categories, relatedSites } from '../config/site';
+
+const publicProjects = categories.flatMap((category) =>
+  'url' in category && category.url
+    ? [{ name: category.name, url: category.url }]
+    : [],
+);
 ---
 
 <BaseLayout
@@ -20,8 +27,8 @@ import Feather from '../components/Feather.astro';
       </h1>
       <div class="prose">
         <p>
-          My Dare, Omnivya, Sanad, ScaLion… Mes projets m’amènent à passer d’un
-          univers à l’autre, et à me poser beaucoup de questions.
+          My Dare, Omnivya, Sanad… Mes projets m’amènent à passer d’un univers à
+          l’autre, et à me poser beaucoup de questions.
         </p>
         <p>
           J’ai voulu ce carnet comme un espace pour prendre du recul : raconter
@@ -34,6 +41,18 @@ import Feather from '../components/Feather.astro';
           faut pour les nuances.
         </p>
       </div>
+      <nav class="about-projects" aria-label="Sites des projets">
+        {publicProjects.map((project) => (
+          <a href={project.url} rel="noopener noreferrer">
+            {project.name}
+          </a>
+        ))}
+        {relatedSites.map((item) => (
+          <a href={item.url} rel="noopener noreferrer">
+            {item.name}
+          </a>
+        ))}
+      </nav>
       <a class="button" href="/univers/">
         Découvrir mes univers <span aria-hidden="true">↗</span>
       </a>

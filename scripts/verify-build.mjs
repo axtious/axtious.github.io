@@ -64,10 +64,27 @@ assert(
   "Le sitemap doit utiliser le domaine final.",
 );
 assert(!sitemap.includes("/404"), "La page 404 ne doit pas être indexée.");
+const robots = await readFile(join(output, "robots.txt"), "utf8");
+assert(robots.includes(`${site.url}/sitemap-index.xml`));
 assert(
-  (await readFile(join(output, "robots.txt"), "utf8")).includes(
-    `${site.url}/sitemap-index.xml`,
-  ),
+  robots.includes(`${site.url}/llms.txt`),
+  "robots.txt doit signaler llms.txt.",
+);
+const llms = await readFile(join(output, "llms.txt"), "utf8");
+assert.match(llms, /^# Taous Deneuve/m, "llms.txt : titre manquant.");
+for (const url of [
+  "https://www.my-dare.com",
+  "https://www.omnivya.fr",
+  "https://www.sanad.cloud",
+  "https://etienne.deneuve.xyz",
+]) {
+  assert(llms.includes(url), `llms.txt : lien manquant ${url}.`);
+}
+assert(!llms.includes("ScaLion"), "llms.txt ne doit plus mentionner ScaLion.");
+assert(
+  !publicText.includes("ScaLion") &&
+    !publicText.includes("/categories/scalion"),
+  "ScaLion ne doit plus apparaître dans les sorties publiques.",
 );
 
 for (const file of htmlFiles) {

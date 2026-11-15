@@ -24,25 +24,30 @@ export const categories = [
     description:
       "Les lieux, les rencontres et la vie d’une entreprise au quotidien.",
     number: "02",
+    url: "https://www.my-dare.com",
   },
   {
     slug: "omnivya",
     name: "Omnivya",
     description: "Entreprendre dans la tech, avec un regard de dirigeante.",
     number: "03",
+    url: "https://www.omnivya.fr",
   },
   {
     slug: "sanad",
     name: "Sanad",
     description: "Construire un produit à partir de besoins concrets.",
     number: "04",
+    url: "https://www.sanad.cloud",
   },
+] as const;
+
+/** Sites publics confirmés, hors catégories du carnet. */
+export const relatedSites = [
   {
-    slug: "scalion",
-    name: "ScaLion",
-    description:
-      "Les questions et les apprentissages d’un projet qui se construit.",
-    number: "05",
+    name: "Étienne Deneuve",
+    url: "https://etienne.deneuve.xyz",
+    description: "Le site d’Étienne Deneuve.",
   },
 ] as const;
 
@@ -51,11 +56,21 @@ export const categorySlugs = [
   "my-dare",
   "omnivya",
   "sanad",
-  "scalion",
 ] as const;
 
 export type CategorySlug = (typeof categorySlugs)[number];
+export type Category = (typeof categories)[number];
 
 export function categoryFor(slug: CategorySlug) {
   return categories.find((category) => category.slug === slug)!;
+}
+
+export function projectCategories() {
+  return categories.filter((category) => category.slug !== "entreprendre");
+}
+
+export function publicProjectUrls(): string[] {
+  return categories.flatMap((category) =>
+    "url" in category && category.url ? [category.url] : [],
+  );
 }

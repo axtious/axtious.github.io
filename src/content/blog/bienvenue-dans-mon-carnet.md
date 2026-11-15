@@ -15,7 +15,7 @@ Ce fichier est un **brouillon de travail**. Il permet de vérifier la présentat
 
 ## Des projets, et ce qu’ils apprennent
 
-[À développer à partir de ses notes : la place de My Dare, Omnivya, Sanad et ScaLion dans ce carnet, avec les exemples qu’elle souhaite rendre publics.]
+[À développer à partir de ses notes : la place de My Dare, Omnivya et Sanad dans ce carnet, avec les exemples qu’elle souhaite rendre publics.]
 
 ## La suite
 
