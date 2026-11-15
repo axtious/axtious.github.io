@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PeacockArt from '../components/PeacockArt.astro';
+import PostCard from '../components/PostCard.astro';
+import EmptyJournal from '../components/EmptyJournal.astro';
+import { categories } from '../config/site';
+import { getPosts } from '../lib/posts';
+const posts = (await getPosts()).slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow">
+        <span class="gold-line"></span> LE CARNET DE TAOUS
+      </p>
+      <h1 id="hero-title">
+        Entreprendre.
+        <br />
+        Et garder les
+        <br />
+        <em>yeux ouverts.</em>
+      </h1>
+      <p class="hero-intro">
+        Les idées prennent une autre dimension quand on les confronte au
+        terrain. Ici, je partage ce que j’apprends en chemin.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="/blog/">
+          Ouvrir le carnet <span aria-hidden="true">↗</span>
+        </a>
+        <a class="text-link" href="/a-propos/">
+          Faire connaissance
+        </a>
+      </div>
+      <p class="hero-note">Des projets, des questions, un regard personnel.</p>
+    </div>
+    <PeacockArt />
+  </section>
+  <div class="universe-strip wrap">
+    <span>PLUSIEURS AVENTURES. UN MÊME FIL.</span>
+    <div>
+      <a href="/univers/#my-dare">My Dare</a>
+      <a href="/univers/#omnivya">Omnivya</a>
+      <a href="/univers/#sanad">Sanad</a>
+      <a href="/univers/#scalion">ScaLion</a>
+    </div>
+  </div>
+  <section class="journal-section wrap" aria-labelledby="journal-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">AU FIL DES PAGES</p>
+        <h2 id="journal-title">Le carnet</h2>
+      </div>
+      <a class="text-link" href="/blog/">
+        Toutes les pages <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    {posts.length > 0 ? (
+      <div class="post-grid">
+        {posts.map((post) => (
+          <PostCard post={post} />
+        ))}
+      </div>
+    ) : (
+      <EmptyJournal />
+    )}
+  </section>
+  <section class="horizons-section" aria-labelledby="horizons-title">
+    <div class="wrap horizons-inner">
+      <div>
+        <p class="eyebrow">CE QUI M’ANIME</p>
+        <h2 id="horizons-title">
+          Un quotidien.
+          <br />
+          <em>Plusieurs horizons.</em>
+        </h2>
+        <p>
+          Un lieu à faire vivre, une équipe à accompagner, un produit à
+          construire. Les sujets se croisent, les questions aussi.
+        </p>
+        <a class="light-link" href="/univers/">
+          Explorer mes univers <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="horizon-list">
+        {categories.slice(0, 3).map((category) => (
+          <a href={`/categories/${category.slug}/`}>
+            <span>{category.number}</span>
+            <div>
+              <h3>{category.name}</h3>
+              <p>{category.description}</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

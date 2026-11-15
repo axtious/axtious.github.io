@@ -1,0 +1,96 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { categoryFor } from '../../config/site';
+import { getPosts, formatDate, readingTime } from '../../lib/posts';
+import { isPublished } from '../../lib/publication';
+
+export const getStaticPaths = (async () =>
+  (await getPosts()).map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }))) satisfies GetStaticPaths;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const outline = headings.filter((heading) => heading.depth === 2);
+const category = categoryFor(post.data.category);
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.cover}
+  imageAlt={post.data.coverAlt}
+  article={{ published: post.data.pubDate, modified: post.data.updatedDate }}
+  noindex={!isPublished(post.data)}
+>
+  <article class="article-page wrap">
+    <header class="article-heading">
+      <a class="back-link" href="/blog/">
+        ← Retour au carnet
+      </a>
+      <p class="eyebrow">
+        <a href={`/categories/${category.slug}/`}>{category.name}</a>
+      </p>
+      {!isPublished(post.data) && (
+        <p class="draft-notice">
+          Brouillon — aperçu local. Cette page est exclue du site publié.
+        </p>
+      )}
+      <h1>{post.data.title}</h1>
+      <p class="article-description">{post.data.description}</p>
+      <p class="article-meta">
+        Par Taous Deneuve ·{' '}
+        <time datetime={post.data.pubDate}>
+          {formatDate(post.data.pubDate)}
+        </time>{' '}
+        · {readingTime(post)} min de lecture
+      </p>
+      {post.data.updatedDate && (
+        <p class="article-meta">
+          Mis à jour le{' '}
+          <time datetime={post.data.updatedDate}>
+            {formatDate(post.data.updatedDate)}
+          </time>
+        </p>
+      )}
+    </header>
+    {post.data.cover && (
+      <figure class="article-cover">
+        <img
+          src={post.data.cover}
+          alt={post.data.coverAlt}
+          width="1200"
+          height="675"
+        />
+      </figure>
+    )}
+    <div class="article-body">
+      <div class="prose">
+        <Content />
+      </div>
+      {outline.length > 1 && (
+        <aside class="article-outline">
+          <nav aria-label="Dans cet article">
+            <p class="eyebrow">DANS CETTE PAGE</p>
+            <ol>
+              {outline.map((heading) => (
+                <li>
+                  <a href={`#${heading.slug}`}>{heading.text}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </aside>
+      )}
+    </div>
+    <footer class="article-end">
+      <p>Une page du carnet de Taous Deneuve.</p>
+      <a class="text-link" href="/blog/">
+        Poursuivre la lecture <span aria-hidden="true">↗</span>
+      </a>
+    </footer>
+  </article>
+</BaseLayout>

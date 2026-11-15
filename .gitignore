@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+.astro/
+
+# Test & tooling
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Environment & OS
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+.npm/
+.cache/

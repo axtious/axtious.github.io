@@ -1,0 +1,29 @@
+---
+import Feather from './Feather.astro';
+const path = Astro.url.pathname;
+const links = [
+  { href: '/blog/', label: 'Le carnet' },
+  { href: '/univers/', label: 'Mes univers' },
+  { href: '/a-propos/', label: 'À propos' },
+];
+---
+
+<header class="site-header wrap">
+  <a class="wordmark" href="/" aria-label="Taous Deneuve — accueil">
+    <Feather class="wordmark-feather" />
+    <span>
+      Taous <strong>Deneuve</strong>
+      <small>CARNET D’ENTREPRENEURE</small>
+    </span>
+  </a>
+  <nav aria-label="Navigation principale">
+    {links.map((link) => (
+      <a
+        href={link.href}
+        aria-current={path.startsWith(link.href) ? 'page' : undefined}
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+</header>

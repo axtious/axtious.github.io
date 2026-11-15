@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Feather from '../components/Feather.astro';
+---
+
+<BaseLayout
+  title="À propos"
+  description="Le carnet personnel de Taous Deneuve : un espace pour partager les questions, les idées et les apprentissages de l’entrepreneuriat."
+>
+  <section class="page-section wrap about-grid">
+    <div class="about-mark" aria-hidden="true">
+      <Feather />
+      <p>Taous</p>
+      <span>UN REGARD PERSONNEL</span>
+    </div>
+    <div class="about-copy">
+      <p class="eyebrow">FAIRE CONNAISSANCE</p>
+      <h1>
+        Moi, c’est <em>Taous.</em>
+      </h1>
+      <div class="prose">
+        <p>
+          My Dare, Omnivya, Sanad, ScaLion… Mes projets m’amènent à passer d’un
+          univers à l’autre, et à me poser beaucoup de questions.
+        </p>
+        <p>
+          J’ai voulu ce carnet comme un espace pour prendre du recul : raconter
+          ce qui se passe sur le terrain, partager une idée, revenir sur une
+          décision.
+        </p>
+        <p>
+          On y parlera d’entrepreneuriat, de travail, de rencontres et de
+          construction de projets. Avec un regard personnel, et la place qu’il
+          faut pour les nuances.
+        </p>
+      </div>
+      <a class="button" href="/univers/">
+        Découvrir mes univers <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

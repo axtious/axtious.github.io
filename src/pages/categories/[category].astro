@@ -1,0 +1,47 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import EmptyJournal from '../../components/EmptyJournal.astro';
+import { categories, categoryFor, type CategorySlug } from '../../config/site';
+import { getPosts } from '../../lib/posts';
+
+export const getStaticPaths = (() =>
+  categories.map((category) => ({
+    params: { category: category.slug },
+  }))) satisfies GetStaticPaths;
+const category = categoryFor(Astro.params.category as CategorySlug);
+const posts = (await getPosts()).filter(
+  (post) => post.data.category === category.slug,
+);
+---
+
+<BaseLayout title={category.name} description={category.description}>
+  <section class="page-section wrap">
+    <header class="page-heading">
+      <p class="eyebrow">LES THÈMES DU CARNET</p>
+      <h1>{category.name}</h1>
+      <p>{category.description}</p>
+    </header>
+    <nav class="category-nav" aria-label="Thèmes du carnet">
+      <a href="/blog/">Tout le carnet</a>
+      {categories.map((item) => (
+        <a
+          href={`/categories/${item.slug}/`}
+          aria-current={item.slug === category.slug ? 'page' : undefined}
+        >
+          {item.name}
+        </a>
+      ))}
+    </nav>
+    {posts.length > 0 ? (
+      <div class="post-grid">
+        {posts.map((post) => (
+          <PostCard post={post} />
+        ))}
+      </div>
+    ) : (
+      <EmptyJournal />
+    )}
+  </section>
+</BaseLayout>

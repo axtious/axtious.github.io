@@ -1,0 +1,6 @@
+---
+description: Conventions du carnet de Taous
+alwaysApply: true
+---
+
+Lire `AGENTS.md` avant toute modification du site. Respecter la voix de Taous, le schéma des articles et `npm run validate` en fin de tâche.

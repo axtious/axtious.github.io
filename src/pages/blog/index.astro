@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import EmptyJournal from '../../components/EmptyJournal.astro';
+import { categories } from '../../config/site';
+import { getPosts } from '../../lib/posts';
+const posts = await getPosts();
+---
+
+<BaseLayout
+  title="Le carnet"
+  description="Réflexions, histoires de terrain et coulisses des projets de Taous Deneuve : My Dare, Omnivya, Sanad et ScaLion."
+>
+  <section class="page-section wrap">
+    <header class="page-heading">
+      <p class="eyebrow">AU FIL DES PAGES</p>
+      <h1>Le carnet</h1>
+      <p>Ce que l’on apprend en faisant. Et les questions qui restent.</p>
+    </header>
+    <nav class="category-nav" aria-label="Thèmes du carnet">
+      <a href="/blog/" aria-current="page">
+        Tout le carnet
+      </a>
+      {categories.map((category) => (
+        <a href={`/categories/${category.slug}/`}>{category.name}</a>
+      ))}
+    </nav>
+    {posts.length > 0 ? (
+      <div class="post-grid">
+        {posts.map((post) => (
+          <PostCard post={post} />
+        ))}
+      </div>
+    ) : (
+      <EmptyJournal />
+    )}
+  </section>
+</BaseLayout>

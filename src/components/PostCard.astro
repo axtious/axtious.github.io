@@ -1,0 +1,29 @@
+---
+import { categoryFor } from '../config/site';
+import { formatDate, postUrl, readingTime, type BlogPost } from '../lib/posts';
+import { isPublished } from '../lib/publication';
+interface Props {
+  post: BlogPost;
+}
+const { post } = Astro.props;
+---
+
+<article class="post-card">
+  <div class="post-meta">
+    <span>{categoryFor(post.data.category).name}</span>
+    {!isPublished(post.data) && (
+      <span class="draft-badge">Brouillon · aperçu local</span>
+    )}
+  </div>
+  <h3>
+    <a href={postUrl(post)}>{post.data.title}</a>
+  </h3>
+  <p>{post.data.description}</p>
+  <div class="post-bottom">
+    <span>
+      <time datetime={post.data.pubDate}>{formatDate(post.data.pubDate)}</time>{' '}
+      · {readingTime(post)} min
+    </span>
+    <span aria-hidden="true">↗</span>
+  </div>
+</article>

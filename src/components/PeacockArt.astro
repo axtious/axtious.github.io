@@ -1,0 +1,53 @@
+---
+const rays = Array.from({ length: 19 }, (_, index) => index * 10 - 90);
+---
+
+<div class="peacock-art" aria-hidden="true">
+  <svg viewBox="0 0 500 580" fill="none">
+    <defs>
+      <radialGradient id="feather-color" cx="50%" cy="36%" r="70%">
+        <stop stop-color="#287c7c" />
+        <stop offset="1" stop-color="#103d43" />
+      </radialGradient>
+    </defs>
+    <path
+      d="M250 32C143 32 56 119 56 226V548H444V226C444 119 357 32 250 32Z"
+      fill="url(#feather-color)"
+    />
+    <path
+      d="M250 51C154 51 76 129 76 226V530H424V226C424 129 346 51 250 51Z"
+      stroke="#e7d5aa"
+      stroke-opacity=".4"
+    />
+    {rays.map((angle) => (
+      <g transform={`rotate(${angle} 250 430)`}>
+        <path d="M250 450V149" stroke="#c6a365" stroke-opacity=".65" />
+        <path
+          d="M250 341C204 292 206 227 250 184C294 227 296 292 250 341Z"
+          fill="#12525a"
+          stroke="#7cad9e"
+          stroke-opacity=".8"
+        />
+        <ellipse cx="250" cy="259" rx="19" ry="32" fill="#b49a5d" />
+        <ellipse cx="250" cy="258" rx="13" ry="23" fill="#55a7a2" />
+        <ellipse cx="250" cy="258" rx="7" ry="14" fill="#0f343f" />
+      </g>
+    ))}
+    <path d="M250 526V351" stroke="#ddc99c" stroke-width="2" />
+    <path
+      d="M250 469C183 414 184 323 250 270C316 323 317 414 250 469Z"
+      fill="#1c6667"
+      stroke="#c6a365"
+      stroke-width="1.5"
+    />
+    <path
+      d="M250 439C208 401 209 342 250 310C291 342 292 401 250 439Z"
+      fill="#c6a365"
+    />
+    <ellipse cx="250" cy="374" rx="23" ry="43" fill="#52a49e" />
+    <ellipse cx="250" cy="372" rx="12" ry="25" fill="#132f3c" />
+    <circle cx="250" cy="20" r="3" fill="#b89b61" />
+    <path d="M205 563H295" stroke="#b89b61" />
+  </svg>
+  <span class="art-caption">Un regard, plusieurs horizons.</span>
+</div>
